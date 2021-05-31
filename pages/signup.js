@@ -10,7 +10,10 @@ import {
   Icon,
   Segment,
 } from "semantic-ui-react";
+import axios from 'axios'
+import baseUrl from '../utils/baseUrl'
 import Link from 'next/link'
+import { handleLogin} from '../utils/auth'
 import catchErrors from '../utils/catchErrors'
 
 const INITIAL_USER = {
@@ -39,7 +42,10 @@ async function handleSubmit(event) {
   try {
     setLoading(true)
     setError('')
-    console.log(user)
+    const url =`${baseUrl}/api/signup`
+    const payload = {...user }
+    const response = await axios.post(url,payload)
+    handleLogin(response.data)
     //make request to user
   } catch (error) {
       catchErrors(error, setError)
