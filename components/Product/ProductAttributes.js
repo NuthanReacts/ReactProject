@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import baseUrl from "../../utils/baseUrl";
 import { useRouter } from "next/router";
 import axios from "axios";
+
 function ProductAttributes({ description, _id, user }) {
   const [openModal, setOpenModal] = useState(false);
   const router = useRouter();
